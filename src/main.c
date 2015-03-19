@@ -87,10 +87,10 @@ void handle_init(void) {
   text_layer_set_text_alignment(timeLayer,GTextAlignmentCenter);
   text_layer_set_background_color(timeLayer, GColorClear);
   text_layer_set_font(timeLayer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
-  text_layer_set_text(timeLayer, "--:--");
+  text_layer_set_text(timeLayer, " ");
 
   cdLayer = text_layer_create(GRect(0, 20, 144 /* width */, 60 /* height */));
-  text_layer_set_text(cdLayer, "----------");
+  text_layer_set_text(cdLayer, " ");
   text_layer_set_font(cdLayer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
   text_layer_set_text_color(cdLayer, GColorWhite);
   text_layer_set_text_alignment(cdLayer,GTextAlignmentCenter);
