@@ -14,6 +14,22 @@ Layer *backgroundLayer;
 typedef struct tm PblTm;
 PblTm PI_TIME;
 
+void setTextColors(void)
+{
+#ifdef PBL_COLOR
+  window_set_background_color(window, GColorCobaltBlue);
+  text_layer_set_text_color(timeLayer, GColorWhite);
+  text_layer_set_text_color(cdLayer, GColorWhite);
+  text_layer_set_text_color(textLayer, GColorWhite);
+#else
+  window_set_background_color(window, GColorBlack);
+  text_layer_set_text_color(timeLayer, GColorWhite);
+  text_layer_set_text_color(cdLayer, GColorWhite);
+  text_layer_set_text_color(textLayer, GColorWhite);
+#endif
+  
+}
+
 time_t computeDeltaTime(struct tm * time1, struct tm * time2)
 {
   time_t time1Secs = p_mktime(time1);
@@ -78,30 +94,30 @@ void handle_init(void) {
   static char text_buffer[] = "TILL PI\nTIME!";
   
   window = window_create();
-  window_set_background_color(window, GColorBlack);
   
   backgroundLayer = window_get_root_layer(window);
+  
+  GRect bounds = layer_get_bounds(backgroundLayer);
 
-  timeLayer = text_layer_create(GRect(0, -3, 144 /* width */, 19 /* height */));
-  text_layer_set_text_color(timeLayer, GColorWhite);
+  timeLayer = text_layer_create(GRect(0, -3, bounds.size.w /* width */, 19 /* height */));
   text_layer_set_text_alignment(timeLayer,GTextAlignmentCenter);
   text_layer_set_background_color(timeLayer, GColorClear);
   text_layer_set_font(timeLayer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
   text_layer_set_text(timeLayer, " ");
 
-  cdLayer = text_layer_create(GRect(0, 20, 144 /* width */, 60 /* height */));
+  cdLayer = text_layer_create(GRect(0, 20, bounds.size.w /* width */, 60 /* height */));
   text_layer_set_text(cdLayer, " ");
   text_layer_set_font(cdLayer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
-  text_layer_set_text_color(cdLayer, GColorWhite);
   text_layer_set_text_alignment(cdLayer,GTextAlignmentCenter);
   text_layer_set_background_color(cdLayer, GColorClear);
   
-  textLayer = text_layer_create(GRect(0, 20+60, 144 /* width */, 109 /* height */));
+  textLayer = text_layer_create(GRect(0, 20+60, bounds.size.w /* width */, 109 /* height */));
   text_layer_set_text(textLayer, text_buffer);
   text_layer_set_font(textLayer, fonts_get_system_font(FONT_KEY_BITHAM_42_LIGHT));
-  text_layer_set_text_color(textLayer, GColorWhite);
   text_layer_set_text_alignment(textLayer,GTextAlignmentCenter);
   text_layer_set_background_color(textLayer, GColorClear);
+  
+  setTextColors();
   
   layer_add_child(backgroundLayer, text_layer_get_layer(timeLayer));
   layer_add_child(backgroundLayer, text_layer_get_layer(cdLayer));

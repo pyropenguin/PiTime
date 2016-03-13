@@ -4,6 +4,7 @@
         ""
     ],
     "companyName": "jonathan.kunze@gmail.com",
+    "enableMultiJS": false,
     "longName": "Pi Time",
     "projectType": "native",
     "resources": {
@@ -12,15 +13,19 @@
                 "file": "images/PiTimeIcon.png",
                 "menuIcon": true,
                 "name": "IMAGE_ICON",
-                "type": "png"
+                "type": "bitmap"
             }
         ]
     },
-    "sdkVersion": "2",
+    "sdkVersion": "3",
     "shortName": "Pi Time",
+    "targetPlatforms": [
+        "aplite",
+        "basalt",
+        "chalk"
+    ],
     "uuid": "31828797-db7f-4723-84b9-6e1221d4f7ab",
-    "versionCode": 1,
-    "versionLabel": "1.1",
+    "versionLabel": "1.2",
     "watchapp": {
         "watchface": true
     }
